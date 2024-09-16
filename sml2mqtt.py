@@ -53,19 +53,32 @@ try:
         # get data on the serial
         data = ser.read_all()
         # print("start block")
-        if len(data) != 0:
-            count = count + 1
-            print(count)
-            print(data)
-            stream.add(data)
-            sml_frame = stream.get_frame()
-            if sml_frame is None:
-                    print('Bytes missing')
+        stream.add(data)
+        sml_frame = stream.get_frame()
 
-# # Add more bytes, once it's a complete frame the SmlStreamReader will
-# # return the frame instead of None
-# stream.add(b'BytesFromSerialPort')
-# sml_frame = stream.get_frame()
+        if sml_frame is None:
+            print('Not full frame')
+        else:
+            # obis_values = sml_frame.get_obis()
+            parsed_msgs = sml_frame.parse_frame()
+            for msg in parsed_msgs:
+                print(msg.format_msg())
+
+        # if len(data) != 0:
+            # count = count + 1
+            # print(len(data))
+            # print(count)
+            # print(data)
+            # stream.add(data)
+            # sml_frame = stream.get_frame()
+
+            # if sml_frame is None:
+            #     print('Not full frame')
+            # else:
+            #     # obis_values = sml_frame.get_obis()
+            #     parsed_msgs = sml_frame.parse_frame()
+            #     for msg in parsed_msgs:
+            #         print(msg.format_msg())
 
 except KeyboardInterrupt:
     ser.close()
