@@ -52,33 +52,33 @@ try:
 
         # get data on the serial
         data = ser.read_all()
-        print(data)
-        stream.add(data)
-        sml_frame = stream.get_frame()
+        # print(data)
+        # stream.add(data)
+        # sml_frame = stream.get_frame()
 
-        if sml_frame is None:
-            print('Not full frame')
-        else:
-            # obis_values = sml_frame.get_obis()
-            parsed_msgs = sml_frame.parse_frame()
-            for msg in parsed_msgs:
-                print(msg.format_msg())
+        # if sml_frame is None:
+        #     print('Not full frame')
+        # else:
+        #     # obis_values = sml_frame.get_obis()
+        #     parsed_msgs = sml_frame.parse_frame()
+        #     for msg in parsed_msgs:
+        #         print(msg.format_msg())
 
-        # if len(data) != 0:
-            # count = count + 1
-            # print(len(data))
-            # print(count)
-            # print(data)
-            # stream.add(data)
-            # sml_frame = stream.get_frame()
+        if len(data) != 0:
+            count = count + 1
+            print(len(data))
+            print(count)
+            print(data)
+            stream.add(data)
+            sml_frame = stream.get_frame()
 
-            # if sml_frame is None:
-            #     print('Not full frame')
-            # else:
-            #     # obis_values = sml_frame.get_obis()
-            #     parsed_msgs = sml_frame.parse_frame()
-            #     for msg in parsed_msgs:
-            #         print(msg.format_msg())
+            if sml_frame is None:
+                print('Not full frame')
+            else:
+                # obis_values = sml_frame.get_obis()
+                parsed_msgs = sml_frame.parse_frame()
+                for msg in parsed_msgs:
+                    print(msg.format_msg())
 
 except KeyboardInterrupt:
     ser.close()
