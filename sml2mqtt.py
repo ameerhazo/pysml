@@ -52,7 +52,7 @@ try:
 
         # get data on the serial
         data = ser.read_all()
-        # print("start block")
+        print(data)
         stream.add(data)
         sml_frame = stream.get_frame()
 
