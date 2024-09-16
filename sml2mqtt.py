@@ -46,6 +46,7 @@ ser.stopbits = serial.STOPBITS_ONE
 
 ser.open()
 
+count = 0
 try:
     while True:
 
@@ -53,6 +54,8 @@ try:
         data = ser.read_all()
         # print("start block")
         if len(data) != 0:
+            count = count + 1
+            print(count)
             print(data)
             stream.add(data)
             sml_frame = stream.get_frame()
