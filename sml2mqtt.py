@@ -75,6 +75,7 @@ try:
             if sml_frame is None:
                 print('Not full frame')
             else:
+                print('Full frame found')
                 # obis_values = sml_frame.get_obis()
                 parsed_msgs = sml_frame.parse_frame()
                 for msg in parsed_msgs:
