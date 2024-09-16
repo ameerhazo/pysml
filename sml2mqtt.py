@@ -54,6 +54,15 @@ try:
         # print("start block")
         if len(data) != 0:
             print(data)
+            stream.add(data)
+            sml_frame = stream.get_frame()
+            if sml_frame is None:
+                    print('Bytes missing')
+
+# # Add more bytes, once it's a complete frame the SmlStreamReader will
+# # return the frame instead of None
+# stream.add(b'BytesFromSerialPort')
+# sml_frame = stream.get_frame()
 
 except KeyboardInterrupt:
     ser.close()
